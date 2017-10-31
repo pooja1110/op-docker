@@ -15,11 +15,13 @@ RUN yum -y update
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 
 ################################################################################
+# INSTALL NGINX
+################################################################################
+RUN yum -y install nginx
+
+################################################################################
 # INSTALL PHP
 ################################################################################
-
-# Installing nginx
-RUN yum -y install nginx
 
 RUN yum -y install php56u-fpm php56u php56u-opcache php56u-xml php56u-mcrypt php56u-gd php56u-devel php56u-mysql php56u-intl php56u-mbstring php56u-bcmath php56u-pecl-memcache php56u-soap \
     cronie gcc git memcached nginx supervisor unzip && \
@@ -40,10 +42,6 @@ RUN yum -y install mysql-server mysql-client
 ################################################################################
 RUN yum install zip unzip -y
 
-RUN rpm -Uvh http://dheche.fedorapeople.org/hhvm/el6/RPMS/x86_64/hhvm-release-6-1.noarch.rpm
-RUN yum -y install hhvm
-
-
 ################################################################################
 # Download AWS CLI
 ################################################################################
@@ -63,8 +61,7 @@ RUN yum -y install git gcc
 ################################################################################
 RUN yum -y install git software-properties-common zip unzip
 
-
 ################################################################################
 # INSTALL COMPOSER
 ################################################################################
-#RUN curl -sS https://getcomposer.org/installer | php -- --install -dir=/usr/bin/ --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install -dir=/usr/bin/ --filename=composer
